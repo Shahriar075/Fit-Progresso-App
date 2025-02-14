@@ -85,10 +85,10 @@ For detailed Feature List, refer to [Feature List Documentation](https://docs.go
 ## Installation Instructions
 
 1.  Clone the Repository  
-    Clone the project repository to your local machine: `git clone https://github.com/Exabyting/assignment-trainee-joy`
+    Clone the project repository to your local machine: `git clone https://github.com/Shahriar075/Fit-Progresso-App.git`
 
 2.  Navigate to the Project Directory  
-    Change into the project directory: `cd assignment-trainee-joy`
+    Change into the project directory: `cd Fit-Progresso-App`
 
 3.  Install Dependencies  
     Install the necessary PHP dependencies: `composer install`
