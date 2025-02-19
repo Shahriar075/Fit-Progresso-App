@@ -56,7 +56,7 @@ The Fit Progresso App is built using Laravel for the backend and MySQL for the d
 -   Admin Functions: Manage users, exercises, and templates.
 
 
-For detailed Feature List, refer to [Feature List Documentation](https://docs.google.com/document/d/1rehwhGdD3q6lOgbpyM4ZtK3a2Xp21SxHkEo7ardTM98/)
+For detailed Feature List, refer to [Feature List Documentation](https://docs.google.com/document/d/1sELVDJI9iLoh_VYopjCZolji0wKA7aZy0EJFb4YUMAY/)
 
 ## Technologies Used
 
@@ -135,7 +135,7 @@ For detailed Feature List, refer to [Feature List Documentation](https://docs.go
 
 ## API Documentation
 
-For detailed API documentation, refer to [API Documentation](https://docs.google.com/document/d/12q5mHFqOnrtpLkVPIQk8JNZqxADK3NpKzCfMsC4nq9w) .
+For detailed API documentation, refer to [API Documentation](https://docs.google.com/document/d/1b_KR_X51zlmBS_KqMAWgqX0kZ8WganiTqKtxjMQIJtE) .
 
 ## Contributing
 
