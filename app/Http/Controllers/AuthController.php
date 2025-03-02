@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
-use GuzzleHttp\Middleware;
+use App\Services\AuthService;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+    protected $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $token = $this->authService->login($credentials);
 
-        if (!$token = JWTAuth::attempt($credentials)) {
+        if (!$token) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
@@ -32,59 +35,29 @@ class AuthController extends Controller
             'role_id' => 'required|exists:roles,id',
         ]);
 
-        $role = Role::find($validatedData['role_id']);
-        if (!$role) {
-            return response()->json(['error' => 'Invalid role'], 400);
-        }
-
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
-            'role_id' => $validatedData['role_id'],
-        ]);
-
-        $token = JWTAuth::fromUser($user);
+        $token = $this->authService->registerUser($validatedData);
 
         return response()->json([
             'message' => 'User registered successfully',
-            'user' => $user,
+            'token' => $token
         ], 201);
-    }
-
-    public function me()
-    {
-        return response()->json(auth()->user());
     }
 
     public function activateUser($id)
     {
-        $authUser= Auth::user();
-
-        $user = User::findOrFail($id);
-
-        if($authUser != $authUser->isAdmin()){
+        if (!$this->authService->activateUser($id)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $user->active = true;
-        $user->save();
 
         return response()->json(['message' => 'User account activated successfully.']);
     }
 
     public function deactivateUser($id)
     {
-        $authUser= Auth::user();
-
-        $user = User::findOrFail($id);
-
-        if($authUser != $authUser->isAdmin()){
+        if (!$this->authService->deactivateUser($id)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $user->active = false;
-        $user->save();
 
         return response()->json(['message' => 'User account deactivated successfully.']);
     }
-
 }

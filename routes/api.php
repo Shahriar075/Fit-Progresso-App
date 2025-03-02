@@ -37,19 +37,19 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/workout-logs/{workoutLog}', [WorkoutLogController::class, 'update'])->name('workout-logs.update');
     Route::get('/workout-logs/{workoutLog}', [WorkoutLogController::class, 'destroy'])->name('workout-logs.destroy');
     Route::post('/workout-log/search', [ProfileController::class, 'searchWorkoutLogsByDate'])->name('workout-logs.searchWorkoutLogsByDate');
-    Route::get('/workout-log/history', [ProfileController::class, 'getWorkoutLogHistory']);
+    Route::get('/workout-log/history', [ProfileController::class, 'getWorkoutLogHistory'])->name('workout-logs.getWorkoutLogHistory');
 
-    Route::get('/exercises/details/{id}', [ProfileController::class, 'getExerciseDetails']);
-    Route::get('/exercises/history/{id}', [ProfileController::class, 'getExerciseHistory']);
-    Route::get('/exercises/records/{id}', [ProfileController::class, 'getExerciseRecords']);
+    Route::get('/exercises/details/{id}', [ProfileController::class, 'getExerciseDetails'])->name('exercises.getExerciseDetails');
+    Route::get('/exercises/history/{id}', [ProfileController::class, 'getExerciseHistory'])->name('exercises.getExerciseHistory');
+    Route::get('/exercises/records/{id}', [ProfileController::class, 'getExerciseRecords'])->name('exercises.getExerciseRecords');
 
-    Route::post('/measures/input', [MeasureController::class, 'inputMeasure']);
-    Route::post('/measures/{measureId}', [MeasureController::class, 'updateMeasure']);
-    Route::get('/measures/{measureId}', [MeasureController::class, 'deleteMeasure']);
-    Route::get('/measures/history/{measureTypeId}', [MeasureController::class, 'getMeasureHistory']);
-    Route::post('/measure-types', [MeasureController::class, 'createMeasureType']);
+    Route::post('/measures/input', [MeasureController::class, 'inputMeasure'])->name('measures.inputMeasure');
+    Route::post('/measures/{measureId}', [MeasureController::class, 'updateMeasure'])->name('measures.updateMeasure');
+    Route::get('/measures/{measureId}', [MeasureController::class, 'deleteMeasure'])->name('measures.deleteMeasure');
+    Route::get('/measures/history/{measureTypeId}', [MeasureController::class, 'getMeasureHistory'])->name('measures.getMeasureHistory');
+    Route::post('/measure-types', [MeasureController::class, 'createMeasureType'])->name('measures.createMeasureType');
 
-    Route::get('/users/activate/{id}', [AuthController::class, 'activateUser']);
-    Route::get('/users/deactivate/{id}', [AuthController::class, 'deactivateUser']);
+    Route::get('/users/activate/{id}', [AuthController::class, 'activateUser'])->name('users.activateUser');
+    Route::get('/users/deactivate/{id}', [AuthController::class, 'deactivateUser'])->name('users.deactivateUser');
 });
 
